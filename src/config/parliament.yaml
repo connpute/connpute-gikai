@@ -1,0 +1,53 @@
+speaker:
+  engine: claude-code
+  model: opus-4.5
+
+parties:
+  - name: 革新党
+    manifesto: innovation.md
+    members:
+      - name: 議員A
+        adapter: openai
+        model: gpt-4o-mini
+      - name: 議員B
+        adapter: xai
+        model: grok-4.1-fast
+
+  - name: 安定党
+    manifesto: stability.md
+    members:
+      - name: 議員C
+        adapter: anthropic
+        model: claude-3.5-haiku
+      - name: 議員D
+        adapter: ollama
+        model: llama3
+
+  - name: 実用党
+    manifesto: pragmatic.md
+    members:
+      - name: 議員E
+        adapter: google
+        model: gemini-2.0-flash
+
+  - name: 自由党
+    manifesto: liberty.md
+    members:
+      - name: 議員F
+        adapter: deepseek
+        model: deepseek-v3
+
+protocol:
+  rounds: 3
+  vote_method: ranked
+  max_tokens_per_speech: 1000
+  language: ja
+  contentiousness:
+    first_reading: 0.8
+    second_reading: 0.6
+    amendment: 0.3
+  sycophancy_prevention:
+    anti_conformity_prompt: true
+    anonymize_sources: true
+    protect_minority_opinion: true
+    measure_opinion_shift: true

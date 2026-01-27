@@ -1,0 +1,26 @@
+{
+  "name": "connpute-gikai",
+  "version": "0.1.0",
+  "description": "AI議会式意思決定システム - Multi-AI Parliamentary Decision Making System",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "gikai": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
