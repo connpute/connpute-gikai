@@ -1,0 +1,112 @@
+{
+  "permissions": {
+    "allow": ["Bash(*)", "Read", "Edit", "Write", "Grep", "Glob"],
+    "ask": [
+      "Bash(gh pr merge*)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(git checkout .)",
+      "Bash(git restore .)",
+      "Bash(git stash drop *)",
+      "Bash(git stash clear)",
+      "Bash(git branch -D *)",
+      "Bash(git merge *)",
+      "Bash(git rebase *)",
+      "Bash(git push --force-with-lease *)",
+      "Bash(git filter-branch *)",
+      "Bash(git filter-repo *)",
+      "Bash(git reflog expire *)",
+      "Bash(rm *)",
+      "Bash(rmdir *)",
+      "Bash(shred *)",
+      "Bash(truncate *)",
+      "Bash(docker rm *)",
+      "Bash(docker rmi *)",
+      "Bash(docker volume rm *)",
+      "Bash(docker system prune *)",
+      "Bash(docker-compose down *)",
+      "Bash(docker exec * bash)",
+      "Bash(docker exec * sh)",
+      "Bash(kill *)",
+      "Bash(killall *)",
+      "Bash(pkill *)",
+      "Bash(chmod *)",
+      "Bash(chown *)",
+      "Bash(npm publish *)",
+      "Bash(npm unpublish *)",
+      "Bash(pnpm publish *)",
+      "Bash(npm version major *)",
+      "Bash(npm version minor *)",
+      "Bash(crontab -r *)",
+      "Bash(systemctl stop *)",
+      "Bash(systemctl disable *)",
+      "Bash(reboot *)",
+      "Bash(shutdown *)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf .*)",
+      "Bash(dd if=* of=/dev/*)",
+      "Bash(mkfs.*)",
+      "Bash(curl * | bash)",
+      "Bash(curl * | sh)",
+      "Bash(wget * | bash)",
+      "Bash(wget * | sh)",
+      "Bash(base64 -d | bash)",
+      "Bash(base64 -d | sh)",
+      "Bash(nc -e *)",
+      "Bash(netcat -e *)",
+      "Bash(kill -9 1)",
+      "Bash(kill -9 -1)",
+      "Bash(> /etc/passwd)",
+      "Bash(> /etc/shadow)",
+      "Bash(>| /etc/passwd)",
+      "Bash(>| /etc/shadow)",
+      "Bash(chmod +s *)",
+      "Bash(chmod u+s *)",
+      "Bash(chmod g+s *)",
+      "Bash(chmod 4* *)",
+      "Bash(curl * | sudo bash)",
+      "Bash(curl * | sudo sh)",
+      "Bash(wget * | sudo bash)",
+      "Bash(wget * | sudo sh)",
+      "Bash(eval $(curl *))",
+      "Bash(eval $(wget *))"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/pre-pr-create.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/pre-do-issue.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-issue-create.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
